@@ -37,7 +37,14 @@ if($flag == true){
         $select_query = "SELECT COUNT(*) as result FROM users WHERE email='$email' AND password='$encript'";
         $connect = mysqli_query($db_connect,$select_query);
         if(mysqli_fetch_assoc($connect)['result'] == 1){
-            header('location: ./home.php');
+            $select_user = "SELECT * FROM users WHERE email='$email' AND password='$encript'";
+            $connect_user = mysqli_query($db_connect,$select_user);
+            $user = mysqli_fetch_assoc($connect_user);
+
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['name'];
+            $_SESSION['user_email'] = $user['email'];
+            header('location: ./dashboard/home.php');
         }else{
             $_SESSION['db_connect error'] = "Emaild and Password did't match";
             header('location: ./login.php');
@@ -48,7 +55,7 @@ if($flag == true){
         header('location: ./login.php');
     }
 }else{
-    $_SESSION['db_connect error'] = 'something wroang';
+    $_SESSION['db_connect error'] = 'something is wroang';
     header('location: ./login.php');
 }
 
