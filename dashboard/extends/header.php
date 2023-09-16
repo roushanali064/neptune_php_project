@@ -52,7 +52,7 @@ if(!$_SESSION['user_id']){
                 <a href="index.html" class="logo-icon"><span class="logo-text">Neptune</span></a>
                 <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
-                        <img src="../assets/images/avatars/avatar.png">
+                        <img src="../images/<?= $_SESSION['user_image'] ?>">
                         <span class="activity-indicator"></span>
                         <span class="user-info-text"><?= $_SESSION['user_name'] ?><br><span class="user-state-info"><?= $_SESSION['user_email'] ?></span></span>
                     </a>

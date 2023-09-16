@@ -44,6 +44,7 @@ if($flag == true){
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_image'] = $user['image'];
             header('location: ./dashboard/home.php');
         }else{
             $_SESSION['db_connect error'] = "Emaild and Password did't match";
