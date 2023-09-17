@@ -56,4 +56,33 @@ if(isset($_POST['password_update'])){
     }
 }
 
+// image upload
+
+if(isset($_POST['image_uplod'])){
+    
+    $image = $_FILES['profile_image']['name'];
+    $image_tmp_name = $_FILES['profile_image']['tmp_name'];
+    $expoloade = explode('.',$image);
+    $extension = end($expoloade);
+    $user_id = $_SESSION['user_id'];
+    $new_image_name = $user_id.'-'.date('d-m-y').'-'.'-'.rand(1111,9999).'-'.'profile'.'.'.$extension;
+    $new_image_location = '../images/profile/'.$new_image_name;
+
+    $image_select_query = "SELECT image  FROM users WHERE id='$user_id'";
+    $image_select_query_connect = mysqli_query($db_connect,$image_select_query);
+    $existig_image = mysqli_fetch_assoc($image_select_query_connect)['image'];
+    
+    if(move_uploaded_file($image_tmp_name,$new_image_location)){
+        $image_uploade_query = "UPDATE users SET image='$new_image_name' WHERE id='$user_id'";
+        mysqli_query($db_connect,$image_uploade_query);
+        $_SESSION['user_image'] = $new_image_name;
+        unlink('../images/profile/'.$existig_image);
+        header('location: ./profile.php');
+    }else{
+        echo "rong";
+    }
+}else{
+    echo "rong";
+}
+
 ?>

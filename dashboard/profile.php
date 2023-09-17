@@ -61,6 +61,38 @@ include('./extends/header.php')
         </div>
     </div>
 </div>
+<!-- image upload -->
+<div class="row">
+<div class="col-6">
+        <div class="card">
+            <div class="card-hader card-body">
+                <h2 class="text-center">Image Uploade</h2>
+            </div>
+            <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <img style="border-radius: 50%; width: 250px; height: 250px;" src="../images/profile/<?= $_SESSION['user_image'] ?>" alt="profile">
+                            </div>
+                        </div>
+                <form action="./profile_update.php" method="POST" enctype="multipart/form-data">
+                    
+                    <label for="imageUpload" class="form-label">Upload Image</label>
+                    <input type="file" class="form-control" id="imageUpload" name="profile_image">
+
+                    <?php  if(isset($_SESSION['password_update error'])) : ?>
+                    <div id="emailHelp" class="form-text text-danger"><?= $_SESSION['password_update error'] ?></div>
+                    <?php endif; unset($_SESSION['password_update error']) ?>
+
+                    <?php  if(isset($_SESSION['password succes'])) : ?>
+                    <div id="emailHelp" class="form-text text-succes"><?= $_SESSION['password succes'] ?></div>
+                    <?php endif; unset($_SESSION['password succes']) ?>
+
+                    <button type="submit" class="btn-primary rounded mt-2 py-4 px-4" name="image_uplod">Uplod Image</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
 
