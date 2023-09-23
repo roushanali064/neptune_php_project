@@ -30,6 +30,8 @@ if(!$_SESSION['user_id']){
     <link href="../assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
     <link href="../assets/plugins/pace/pace.css" rel="stylesheet">
 
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- Theme Styles -->
     <link href="../assets/css/main.min.css" rel="stylesheet">
@@ -69,23 +71,26 @@ if(!$_SESSION['user_id']){
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'profile.php' ? 'active-page' : '' ?>">
                         <a href="profile.php" class=""><i class="material-icons-two-tone">face</i>profile</a>
                     </li>
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active-page' : '' ?>">
+                        <a href="../index.php" target="_blank" class=""><i class="material-icons-two-tone">link</i>website</a>
+                    </li>
                     <li>
                         <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
                     </li>
                     <li class="sidebar-title">
                         UI Elements
                     </li>
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">color_lens</i>Styles<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'services_list.php' ? 'active-page' : '' ?>">
+                        <a  href="#">
+                            <i class="material-icons-two-tone">color_lens
+                        </i>Services
+                        <i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="styles-typography.html">Typography</a>
+                                <a  href="./services_list.php">Services List</a>
                             </li>
                             <li>
-                                <a href="styles-code.html">Code</a>
-                            </li>
-                            <li>
-                                <a href="styles-icons.html">Icons</a>
+                                <a href="./services_insert.php">Add Services</a>
                             </li>
                         </ul>
                     </li>
