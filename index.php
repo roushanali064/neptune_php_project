@@ -469,11 +469,11 @@ $portfolios = mysqli_query($db_connect,$portfolio_query);
                         </div>
                         <div class="col-lg-6">
                             <div class="contact-form">
-                                <form action="#">
-                                    <input type="text" placeholder="your name *">
-                                    <input type="email" placeholder="your email *">
+                                <form action="./mail_submission.php" method="POST">
+                                    <input type="text" name="name" placeholder="your name *">
+                                    <input type="email" placeholder="your email *" name="email">
                                     <textarea name="message" id="message" placeholder="your message *"></textarea>
-                                    <button class="btn">SEND</button>
+                                    <button class="btn" name="mail_submission">SEND</button>
                                 </form>
                             </div>
                         </div>
