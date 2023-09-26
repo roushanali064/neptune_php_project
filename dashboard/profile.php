@@ -8,7 +8,7 @@ include('./extends/header.php')
 <div class="row">
     <div class="col">
         <div class="page-description">
-            <h1>Dashboard</h1>
+            <h1>Profile Update</h1>
         </div>
     </div>
 </div>

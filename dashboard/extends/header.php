@@ -94,6 +94,20 @@ if(!$_SESSION['user_id']){
                             </li>
                         </ul>
                     </li>
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'portfolio_list.php' && 'portfolio_insert.php' ? 'active-page' : '' ?>">
+                        <a  href="#">
+                            <i class="material-icons-two-tone">color_lens
+                        </i>Portfolio
+                        <i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a  href="./portfolio_list.php">Portfolio List</a>
+                            </li>
+                            <li>
+                                <a href="./portfolio_insert.php">Add Portfolio</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
