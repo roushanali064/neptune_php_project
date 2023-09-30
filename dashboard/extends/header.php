@@ -1,9 +1,13 @@
 <?php
+include('../config/db.php');
 
 session_start();
 if(!$_SESSION['user_id']){
     header('location: ../404.php');
 }
+
+$select_query = "SELECT * FROM user_message";
+$message = mysqli_query($db_connect,$select_query);
 
 ?>
 
@@ -74,8 +78,8 @@ if(!$_SESSION['user_id']){
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active-page' : '' ?>">
                         <a href="../index.php" target="_blank" class=""><i class="material-icons-two-tone">link</i>website</a>
                     </li>
-                    <li>
-                        <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'user_mail.php' ? 'active-page' : '' ?>">
+                        <a href="user_mail.php" ><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end"><?= mysqli_num_rows($message) ?></span></a>
                     </li>
                     <li class="sidebar-title">
                         UI Elements

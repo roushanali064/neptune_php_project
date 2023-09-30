@@ -12,6 +12,7 @@ if ($name) {
     if (!preg_match("/^[a-zA-Z-' .]*$/", $name)) {
         $_SESSION['name error'] = 'Only letters and white space allowed';
         header('location: ./registration.php');
+        $flag = false;
     } else {
         $flag = true;
     }
@@ -24,7 +25,8 @@ if ($email) {
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $flag = true;
     } else {
-        $_SESSION['email error'] = 'provide valid emaill address';
+        $flag = false;
+        $_SESSION['email error'] = 'provide valid email address';
         header('location: ./registration.php');
     }
 } else {
@@ -32,11 +34,14 @@ if ($email) {
     header('location: ./registration.php');
 }
 
+// password preg_match
+
 if ($password) {
-    if (preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
+    if (preg_match('/^(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)) {
         $flag = true;
     } else {
-        $_SESSION['password error'] = 'please provide a chracter a number and sepcial charctere';
+        $_SESSION['password error'] = 'Password must contain at least one letter, one digit, and be 8-12 characters long.';
+        $flag = false;
         header('location: ./registration.php');
     }
 } else {
@@ -49,6 +54,7 @@ if ($confiram_password) {
         $flag = true;
     } else {
         $_SESSION['confiram_password error'] = 'confiram_password and password did not match';
+        $flag = false;
         header('location: ./registration.php');
     }
 } else {
@@ -86,7 +92,7 @@ if ($flag == true) {
         header('location: ./registration.php');
     }
 } else {
-    $_SESSION['db_connect error'] = 'something worang';
+    $_SESSION['db_connect error'] = 'something wrong';
     header('location: ./registration.php');
 }
 ?>

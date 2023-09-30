@@ -19,9 +19,7 @@ if(isset($_POST['mail_submission'])){
     $subject = "Kufa community support";
     $body = "Hey $name thankyou for send a email"."<br>"."kuffa community receive your email"."<br>"."A kuffa agent reply your email in 2 hours";
 
-    // php mailer
-
-    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+//Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -53,6 +51,45 @@ if(isset($_POST['mail_submission'])){
     $insert_query = "INSERT INTO user_message (email,name,message) VALUES ('$email_to','$name','$message')";
     mysqli_query($db_connect,$insert_query);
     header('location: ./index.php');
+}
+
+// feedback mail
+
+if(isset($_POST['send_feedback'])){
+    $message_id = $_POST['message_id'];
+    $email_to = $_POST['email'];
+    $subject = $_POST['subject'];
+    $body = $_POST['description'];
+
+    if($message_id && $email_to && $subject && $body){
+
+    //Enable verbose debug output
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'roushanrhaman064@gmail.com';                     //SMTP username
+    $mail->Password   = 'wvtb wzzu cwji tzot';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;
+
+    //Recipients
+    $mail->setFrom('big_kuffa@dev.com', 'BIG_Kuffa');
+    $mail->addAddress($email_to);     //Add a recipient
+    $mail->addReplyTo($email_to);
+
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = $subject;
+    $mail->Body    = $body;
+    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    // update
+
+        $update_query = "UPDATE user_message SET feedback='$body'";
+        mysqli_query($db_connect,$update_query);
+        header('location: ./dashboard/user_mail.php');
+    }
 }
 
 ?>
